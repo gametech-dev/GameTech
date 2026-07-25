@@ -1,0 +1,77 @@
+<%- include("partials/header") %>
+
+<section class="login-page">
+
+    <div class="login-wrapper">
+
+        <div class="login-card">
+
+            <div class="login-header">
+
+                <span class="login-badge">
+                    📰 GameTech
+                </span>
+
+                <h1>Nova Notícia</h1>
+
+                <p>
+                    Preenche os dados para publicar uma nova notícia.
+                </p>
+
+            </div>
+
+            <form action="/admin/noticias/nova" method="POST">
+
+                <div class="form-group">
+                    <label>Título</label>
+                    <input
+                        type="text"
+                        name="titulo"
+                        placeholder="Título da notícia"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label>Categoria</label>
+
+                    <select name="categoria" class="input" required>
+                        <option value="">Seleciona uma categoria</option>
+                        <option>PlayStation</option>
+                        <option>Xbox</option>
+                        <option>Nintendo</option>
+                        <option>PC Gaming</option>
+                        <option>Tecnologia</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Imagem (URL)</label>
+                    <input
+                        type="text"
+                        name="imagem"
+                        placeholder="/images/noticia.jpg">
+                </div>
+
+                <div class="form-group">
+                    <label>Conteúdo</label>
+
+                    <textarea
+                        name="conteudo"
+                        rows="8"
+                        placeholder="Escreve aqui a notícia..."
+                        required></textarea>
+                </div>
+
+                <button class="btn btn-primary login-button">
+                    Publicar Notícia
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+<%- include("partials/footer") %>

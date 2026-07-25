@@ -1,0 +1,89 @@
+<%- include("partials/header") %>
+
+<section class="login-page">
+
+    <div class="container">
+
+        <div class="login-wrapper">
+
+            <div class="login-card">
+
+                <div class="login-header">
+
+                    <span class="login-badge">
+                        🎮 GameTech
+                    </span>
+
+                    <h1>
+                        Bem-vindo de volta
+                    </h1>
+
+                    <p>
+                        Inicia sessão para aceder ao teu perfil, comentar notícias e acompanhar todas as novidades do mundo gaming.
+                    </p>
+
+                </div>
+
+                <form action="/login" method="POST" class="login-form">
+                                        <div class="form-group">
+
+                        <label for="email">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Introduz o teu email"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Palavra-passe
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Introduz a tua palavra-passe"
+                            required
+                        >
+
+                    </div>
+
+                    <button type="submit" class="btn btn-primary login-button">
+
+                        Entrar
+
+                    </button>
+
+                </form>
+                                <div class="login-footer">
+
+                    <p>
+
+                        Ainda não tens conta?
+
+                        <a href="/cadastro">
+                            Criar conta
+                        </a>
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<%- include("partials/footer") %>

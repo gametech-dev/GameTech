@@ -1,0 +1,87 @@
+<%- include("partials/header") %>
+
+<section class="admin-page">
+
+    <div class="container">
+
+        <div class="admin-header">
+
+            <span class="login-badge">
+                ⚙ Painel Administrativo
+            </span>
+
+            <h1>
+                Bem-vindo,
+                <%= user.nome %>
+            </h1>
+
+            <p>
+                Gere notícias, utilizadores e todo o conteúdo do GameTech.
+            </p>
+
+        </div>
+
+        <div class="admin-grid">
+
+    <div class="admin-card">
+
+        <h3>📰 Notícias</h3>
+
+        <p>
+            Criar, editar e apagar notícias do GameTech.
+        </p>
+
+        <a href="/admin/noticias" class="btn btn-primary">
+            Gerir Notícias
+        </a>
+
+    </div>
+
+    <div class="admin-card">
+
+        <h3>👥 Utilizadores</h3>
+
+        <p>
+            Consultar e gerir contas registadas.
+        </p>
+
+        <a href="#" class="btn btn-primary">
+            Ver Utilizadores
+        </a>
+
+    </div>
+
+    <div class="admin-card">
+
+        <h3>📊 Estatísticas</h3>
+
+        <p>
+            Visualiza rapidamente o estado do portal.
+        </p>
+
+        <a href="#" class="btn btn-primary">
+            Ver Estatísticas
+        </a>
+
+    </div>
+
+    <div class="admin-card">
+
+        <h3>⚙ Configurações</h3>
+
+        <p>
+            Personaliza o GameTech e as definições do portal.
+        </p>
+
+        <a href="#" class="btn btn-primary">
+            Configurações
+        </a>
+
+    </div>
+
+</div>
+    </div>
+
+</section>
+
+<%- include("partials/footer") %>
