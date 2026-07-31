@@ -1,0 +1,37 @@
+<%- include("partials/header") %>
+
+<section class="news-detail">
+
+    <div class="container">
+
+        <span class="news-category">
+            <%= noticia.categoria %>
+        </span>
+
+        <h1 class="news-title">
+            <%= noticia.titulo %>
+        </h1>
+
+        <div class="news-meta">
+            <span><%= noticia.autor %></span>
+            <span><%= noticia.data %></span>
+        </div>
+
+        <img
+            class="news-banner"
+            src="<%= noticia.imagem %>"
+            alt="<%= noticia.titulo %>">
+
+        <div class="news-text">
+            <p><%= noticia.conteudo %></p>
+        </div>
+
+        <a href="/noticias" class="btn-back">
+            ← Voltar às notícias
+        </a>
+
+    </div>
+
+</section>
+
+<%- include("partials/footer") %>

@@ -1,0 +1,101 @@
+<%- include("partials/header") %>
+
+<section class="login-page">
+
+    <div class="login-wrapper">
+
+        <div class="login-card">
+
+            <div class="login-header">
+
+                <span class="login-badge">
+                    ✏ GameTech
+                </span>
+
+                <h1>Editar Notícia</h1>
+
+                <p>
+                    Atualiza as informações da notícia.
+                </p>
+
+            </div>
+
+            <form action="/admin/noticias/<%= noticia.id %>/editar" method="POST">
+
+                <div class="form-group">
+                    <label>Título</label>
+
+                    <input
+                        type="text"
+                        name="titulo"
+                        value="<%= noticia.titulo %>"
+                        required>
+                </div>
+
+                <div class="form-group">
+
+                    <label>Categoria</label>
+
+                    <select name="categoria" class="input" required>
+
+                        <option value="PlayStation" <%= noticia.categoria==="PlayStation" ? "selected" : "" %>>
+                            PlayStation
+                        </option>
+
+                        <option value="Xbox" <%= noticia.categoria==="Xbox" ? "selected" : "" %>>
+                            Xbox
+                        </option>
+
+                        <option value="Nintendo" <%= noticia.categoria==="Nintendo" ? "selected" : "" %>>
+                            Nintendo
+                        </option>
+
+                        <option value="PC Gaming" <%= noticia.categoria==="PC Gaming" ? "selected" : "" %>>
+                            PC Gaming
+                        </option>
+
+                        <option value="Tecnologia" <%= noticia.categoria==="Tecnologia" ? "selected" : "" %>>
+                            Tecnologia
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Imagem (URL)</label>
+
+                    <input
+                        type="text"
+                        name="imagem"
+                        value="<%= noticia.imagem %>">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Conteúdo</label>
+
+                    <textarea
+                        name="conteudo"
+                        rows="8"
+                        required><%= noticia.conteudo %></textarea>
+
+                </div>
+
+                <button class="btn btn-primary login-button">
+
+                    Guardar Alterações
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+<%- include("partials/footer") %>

@@ -1,0 +1,115 @@
+/* ==========================================================
+   BOTÕES
+========================================================== */
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+
+    padding:14px 28px;
+
+    border:none;
+    border-radius:12px;
+
+    cursor:pointer;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    transition:.3s;
+}
+
+.btn-primary{
+    background:#2563eb;
+    color:#fff;
+}
+
+.btn-primary:hover{
+    background:#1d4ed8;
+    transform:translateY(-2px);
+}
+
+.btn-secondary{
+    background:transparent;
+    border:2px solid rgba(255,255,255,.15);
+    color:#fff;
+}
+
+.btn-secondary:hover{
+    background:#fff;
+    color:#08111f;
+}
+
+/* ==========================================================
+   BADGES
+========================================================== */
+
+.badge{
+    display:inline-block;
+
+    padding:6px 14px;
+
+    border-radius:999px;
+
+    background:#2563eb;
+
+    color:#fff;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    text-transform:uppercase;
+}
+
+/* ==========================================================
+   CARDS
+========================================================== */
+
+.card{
+    background:#111c2f;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:18px;
+
+    box-shadow:0 18px 40px rgba(0,0,0,.25);
+
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    border-color:#2563eb;
+}
+
+/* ==========================================================
+   INPUTS
+========================================================== */
+
+.input{
+    width:100%;
+
+    padding:14px 16px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:12px;
+
+    background:rgba(255,255,255,.04);
+
+    color:#fff;
+
+    transition:.3s;
+}
+
+.input:focus{
+    outline:none;
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 0 4px rgba(37,99,235,.15);
+}

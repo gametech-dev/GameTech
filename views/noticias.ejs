@@ -1,0 +1,66 @@
+<%- include("partials/header") %>
+
+<section class="news-section">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <h2>Últimas Notícias</h2>
+
+            <p>
+                Fica a par de todas as novidades do mundo gaming.
+            </p>
+
+        </div>
+
+        <div class="news-grid">
+
+            <% if (noticias.length === 0) { %>
+
+                <p>Ainda não existem notícias publicadas.</p>
+
+            <% } else { %>
+
+                <% noticias.forEach(noticia => { %>
+
+                    <a href="/noticias/<%= noticia.id %>" class="news-card">
+
+                        <div class="news-image">
+                            <img src="<%= noticia.imagem %>" alt="<%= noticia.titulo %>">
+                        </div>
+
+                        <div class="news-content">
+
+                            <span class="news-category">
+                                <%= noticia.categoria %>
+                            </span>
+
+                            <h3 class="news-title">
+                                <%= noticia.titulo %>
+                            </h3>
+
+                            <p class="news-description">
+                                <%= noticia.conteudo.substring(0,150) %>...
+                            </p>
+
+                            <div class="news-meta">
+                                <span><%= noticia.autor %></span>
+                                <span><%= noticia.data %></span>
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                <% }) %>
+
+            <% } %>
+
+        </div>
+
+    </div>
+
+</section>
+
+<%- include("partials/footer") %>

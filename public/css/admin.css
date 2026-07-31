@@ -1,32 +1,249 @@
+/* ==========================================================
+   ADMIN PAGE
+========================================================== */
+
 .admin-page{
-    padding:120px 0 80px;
+    padding:140px 0 80px;
     min-height:100vh;
+    background:#08111f;
 }
 
 .admin-header{
-    margin-bottom:40px;
+    margin-bottom:50px;
 }
 
 .admin-header h1{
-    font-size:42px;
-    margin:20px 0 10px;
+    font-size:46px;
+    font-weight:700;
     color:#fff;
+    margin:20px 0 10px;
 }
 
 .admin-header p{
-    color:#9ca3af;
+    color:#94a3b8;
     font-size:18px;
+    line-height:1.8;
 }
+
+/* ==========================================================
+   DASHBOARD CARDS
+========================================================== */
 
 .admin-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:25px;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:30px;
 }
 
 .admin-card{
-    background:#1e293b;
+    background:#111c2f;
     border:1px solid rgba(255,255,255,.08);
     border-radius:18px;
     padding:30px;
+    display:flex;
+    flex-direction:column;
+    transition:.3s;
+}
+
+.admin-card:hover{
+    transform:translateY(-8px);
+    border-color:#2563eb;
+    box-shadow:0 20px 40px rgba(0,0,0,.35);
+}
+
+.admin-card h3{
+    font-size:24px;
+    color:#fff;
+    margin-bottom:18px;
+}
+
+.admin-card p{
+    color:#cbd5e1;
+    line-height:1.8;
+    flex:1;
+    margin-bottom:25px;
+}
+
+.admin-card .btn{
+    width:100%;
+    text-align:center;
+}
+
+/* ==========================================================
+   BADGE
+========================================================== */
+
+.login-badge{
+    display:inline-block;
+    background:#2563eb;
+    color:#fff;
+    padding:8px 18px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+}
+
+/* ==========================================================
+   TABELA
+========================================================== */
+
+.admin-table{
+    margin-top:35px;
+    background:#111c2f;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:18px;
+    overflow:hidden;
+}
+
+.admin-table table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.admin-table thead{
+    background:#1a2438;
+}
+
+.admin-table th{
+    padding:18px 20px;
+    color:#fff;
+    text-align:left;
+    font-size:15px;
+    font-weight:600;
+}
+
+.admin-table td{
+    padding:18px 20px;
+    color:#d1d5db;
+    border-top:1px solid rgba(255,255,255,.06);
+    vertical-align:middle;
+}
+
+.admin-table tbody tr{
+    transition:.25s;
+}
+
+.admin-table tbody tr:hover{
+    background:rgba(255,255,255,.03);
+}
+
+.admin-table td:first-child{
+    width:70px;
+    font-weight:700;
+    color:#fff;
+}
+
+.admin-table td:nth-child(2){
+    max-width:420px;
+    color:#fff;
+    font-weight:600;
+}
+
+.admin-table td:nth-child(2){
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.admin-table td:nth-child(3){
+    width:140px;
+}
+
+.admin-table td:nth-child(4){
+    width:170px;
+}
+
+.admin-table td:last-child{
+    width:180px;
+}
+
+/* ==========================================================
+   CATEGORIA
+========================================================== */
+
+.category-badge{
+    display:inline-block;
+    padding:6px 14px;
+    border-radius:999px;
+    background:#2563eb;
+    color:#fff;
+    font-size:12px;
+    font-weight:600;
+    text-transform:uppercase;
+}
+
+/* ==========================================================
+   BOTÕES
+========================================================== */
+
+.btn-action{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+
+    padding:8px 14px;
+
+    border-radius:8px;
+
+    text-decoration:none;
+
+    font-size:14px;
+    font-weight:600;
+
+    transition:.25s;
+}
+
+.btn-action.edit{
+    background:#2563eb;
+    color:#fff;
+}
+
+.btn-action.edit:hover{
+    background:#1d4ed8;
+}
+
+.btn-action.delete{
+    background:#dc2626;
+    color:#fff;
+}
+
+.btn-action.delete:hover{
+    background:#b91c1c;
+}
+
+/* ==========================================================
+   RESPONSIVO
+========================================================== */
+
+@media(max-width:900px){
+
+    .admin-table{
+        overflow-x:auto;
+    }
+
+    .admin-table table{
+        min-width:900px;
+    }
+
+}
+
+/* ==========================
+   MINIATURA DA NOTÍCIA
+========================== */
+
+.admin-thumb{
+
+    width:90px;
+
+    height:55px;
+
+    object-fit:cover;
+
+    border-radius:8px;
+
+    border:1px solid rgba(255,255,255,.1);
+
 }

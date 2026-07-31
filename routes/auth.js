@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
+
+const newsController = require("../controllers/newsController");
+
 // Página Inicial
 router.get("/", (req, res) => {
     res.render("index");
@@ -17,9 +20,7 @@ router.get("/cadastro", (req, res) => {
 });
 
 // Página de Notícias
-router.get("/noticias", (req, res) => {
-    res.render("noticias");
-});
+
 // Página de Perfil
 router.get("/perfil", (req, res) => {
 

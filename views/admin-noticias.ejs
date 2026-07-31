@@ -1,0 +1,143 @@
+<%- include("partials/header") %>
+
+<section class="admin-page">
+
+    <div class="container">
+
+        <div class="admin-header">
+
+            <span class="login-badge">
+                📰 Gestão de Notícias
+            </span>
+
+            <h1>Gerir Notícias</h1>
+
+            <p>
+                Cria, edita e elimina todas as notícias publicadas no GameTech.
+            </p>
+
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; margin-bottom:30px;">
+
+            <a href="/admin/noticias/nova" class="btn btn-primary">
+                + Nova Notícia
+            </a>
+
+        </div>
+
+        <div class="admin-table">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Imagem</th>
+                        <th>Título</th>
+                        <th>Categoria</th>
+                        <th>Autor</th>
+                        <th>Data</th>
+                        <th>Ações</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <% if (noticias.length === 0) { %>
+
+                        <tr>
+
+                            <td colspan="7" style="text-align:center;padding:40px;">
+                                Ainda não existem notícias publicadas.
+                            </td>
+
+                        </tr>
+
+                    <% } else { %>
+
+                        <% noticias.forEach(noticia => { %>
+
+                            <tr>
+
+                                <td>#<%= noticia.id %></td>
+
+                                <td>
+
+                                    <img
+                                        src="<%= noticia.imagem %>"
+                                        alt="<%= noticia.titulo %>"
+                                        style="
+                                            width:90px;
+                                            height:55px;
+                                            object-fit:cover;
+                                            border-radius:8px;
+                                        "
+                                    >
+
+                                </td>
+
+                                <td>
+
+                                    <strong><%= noticia.titulo %></strong>
+
+                                </td>
+
+                                <td>
+
+                                    <span class="category-badge">
+                                        <%= noticia.categoria %>
+                                    </span>
+
+                                </td>
+
+                                <td>
+                                    <%= noticia.autor %>
+                                </td>
+
+                                <td>
+                                    <%= noticia.data %>
+                                </td>
+
+                                <td>
+
+                                    <a
+                                        href="/admin/noticias/<%= noticia.id %>/editar"
+                                        class="btn-action edit">
+
+                                        ✏ Editar
+
+                                    </a>
+
+                                    <a
+                                        href="/admin/noticias/<%= noticia.id %>/apagar"
+                                        class="btn-action delete"
+                                        onclick="return confirm('Tens a certeza que pretendes apagar esta notícia?');">
+
+                                        🗑 Apagar
+
+                                    </a>
+
+                                </td>
+
+                            </tr>
+
+                        <% }) %>
+
+                    <% } %>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+<%- include("partials/footer") %>

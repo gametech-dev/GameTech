@@ -1,7 +1,10 @@
+console.log("ESTE É O SERVER CERTO");
+
 const express = require("express");
 const session = require("express-session");
 const path = require("path");
 const bcrypt = require("bcrypt");
+const noticiasRoutes = require("./routes/noticias");
 
 console.log("1 - Express carregado");
 
@@ -37,7 +40,12 @@ app.set("views", path.join(__dirname, "views"));
 // Rotas
 // =======================
 
+app.get("/teste", (req, res) => {
+    res.render("noticias", { noticias: [] });
+});
+
 app.use("/", authRoutes);
+app.use("/", noticiasRoutes);
 app.use("/admin", adminRoutes);
 
 // =======================
