@@ -696,10 +696,11 @@ body{
     /* HERO */
 
     .hero{
-        height:auto;
-        min-height:100vh;
-        padding:130px 0 80px;
-    }
+    min-height:650px;
+    height:auto;
+    padding:110px 20px 60px;
+    background-position:center top;
+}
 
     .hero-content{
         max-width:100%;
