@@ -664,3 +664,80 @@ body{
     margin:4px;
 
 }
+
+/* ==========================================================
+   RESPONSIVO
+========================================================== */
+
+@media (max-width: 1024px){
+
+    .stats-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media (max-width:768px){
+
+    .container{
+        width:95%;
+    }
+
+    /* HEADER */
+
+    #menu{
+        display:none;
+    }
+
+    .logo span{
+        font-size:22px;
+    }
+
+    /* HERO */
+
+    .hero{
+        height:auto;
+        min-height:100vh;
+        padding:130px 0 80px;
+    }
+
+    .hero-content{
+        max-width:100%;
+    }
+
+    .hero h1{
+        font-size:52px;
+    }
+
+    .hero h2{
+        font-size:28px;
+    }
+
+    .hero p{
+        font-size:18px;
+    }
+
+    .hero-buttons{
+
+        flex-direction:column;
+        align-items:center;
+
+    }
+
+    .btn{
+
+        width:100%;
+        max-width:300px;
+
+    }
+
+    /* STATS */
+
+    .stats-grid{
+
+        grid-template-columns:1fr;
+        gap:20px;
+
+    }
+
+}
