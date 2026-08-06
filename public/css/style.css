@@ -677,6 +677,14 @@ body{
 
 }
 
+@media (max-width:1024px){
+
+    .stats-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
 @media (max-width:768px){
 
     .container{
@@ -687,6 +695,23 @@ body{
 
     #menu{
         display:none;
+        flex-direction:column;
+        position:absolute;
+        top:80px;
+        left:0;
+        width:100%;
+        background:#08111f;
+        padding:20px 0;
+        gap:20px;
+        z-index:999;
+    }
+
+    #menu.active{
+        display:flex;
+    }
+
+    #menu a{
+        text-align:center;
     }
 
     .logo span{
@@ -696,11 +721,11 @@ body{
     /* HERO */
 
     .hero{
-    min-height:650px;
-    height:auto;
-    padding:110px 20px 60px;
-    background-position:center top;
-}
+        height:auto;
+        min-height:650px;
+        padding:110px 20px 60px;
+        background-position:center top;
+    }
 
     .hero-content{
         max-width:100%;
@@ -719,49 +744,20 @@ body{
     }
 
     .hero-buttons{
-
         flex-direction:column;
         align-items:center;
-
     }
 
     .btn{
-
         width:100%;
         max-width:300px;
-
     }
 
     /* STATS */
 
     .stats-grid{
-
         grid-template-columns:1fr;
         gap:20px;
-
-    }
-
-}
-
-@media (max-width:768px){
-
-    #menu{
-
-        display:none;
-        flex-direction:column;
-        position:absolute;
-        top:80px;
-        left:0;
-        width:100%;
-        background:#08111f;
-        padding:20px;
-
-    }
-
-    #menu.active{
-
-        display:flex;
-
     }
 
 }

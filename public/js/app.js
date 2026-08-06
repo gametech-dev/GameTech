@@ -1,12 +1,16 @@
-const menuBtn = document.getElementById("menuBtn");
-const menu = document.getElementById("menu");
+document.addEventListener("DOMContentLoaded", () => {
 
-if (menuBtn && menu) {
+    const menuBtn = document.getElementById("menuBtn");
+    const menu = document.getElementById("menu");
 
-    menuBtn.addEventListener("click", () => {
+    if (menuBtn && menu) {
 
-        menu.classList.toggle("active");
+        menuBtn.addEventListener("click", () => {
 
-    });
+            menu.classList.toggle("active");
 
-}
+        });
+
+    }
+
+});
