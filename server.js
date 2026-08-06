@@ -13,6 +13,7 @@ console.log("2 - Base de dados carregada");
 
 const authRoutes = require("./routes/auth");
 console.log("3 - Rotas carregadas");
+
 const adminRoutes = require("./routes/admin");
 
 const app = express();
@@ -41,7 +42,11 @@ app.set("views", path.join(__dirname, "views"));
 // =======================
 
 app.get("/teste", (req, res) => {
-    res.render("noticias", { noticias: [] });
+
+    res.render("noticias", {
+        noticias: []
+    });
+
 });
 
 app.use("/", authRoutes);
@@ -68,7 +73,6 @@ app.post("/cadastro", async (req, res) => {
                 if (err) {
 
                     console.log(err);
-
                     return res.send("Erro ao criar conta.");
 
                 }
@@ -82,7 +86,6 @@ app.post("/cadastro", async (req, res) => {
     } catch (err) {
 
         console.log(err);
-
         res.send("Erro interno.");
 
     }
@@ -157,6 +160,18 @@ app.get("/logout", (req, res) => {
 
         res.redirect("/");
 
+    });
+
+});
+
+// =======================
+// Página 404
+// =======================
+
+app.use((req, res) => {
+
+    res.status(404).render("404", {
+        user: req.session.user || null
     });
 
 });
