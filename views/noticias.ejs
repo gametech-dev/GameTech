@@ -14,11 +14,31 @@
 
         </div>
 
+        <!-- Pesquisa -->
+
+        <div class="search-box">
+
+            <form action="/noticias" method="GET">
+
+                <input
+                    type="text"
+                    name="pesquisa"
+                    placeholder="🔎 Procurar notícias..."
+                    value="<%= typeof pesquisa !== 'undefined' ? pesquisa : '' %>">
+
+                <button type="submit">
+                    Pesquisar
+                </button>
+
+            </form>
+
+        </div>
+
         <div class="news-grid">
 
             <% if (noticias.length === 0) { %>
 
-                <p>Ainda não existem notícias publicadas.</p>
+                <p>Nenhuma notícia encontrada.</p>
 
             <% } else { %>
 
@@ -27,7 +47,11 @@
                     <a href="/noticias/<%= noticia.id %>" class="news-card">
 
                         <div class="news-image">
-                            <img src="<%= noticia.imagem %>" alt="<%= noticia.titulo %>">
+
+                            <img
+                                src="<%= noticia.imagem %>"
+                                alt="<%= noticia.titulo %>">
+
                         </div>
 
                         <div class="news-content">
@@ -45,8 +69,15 @@
                             </p>
 
                             <div class="news-meta">
-                                <span><%= noticia.autor %></span>
-                                <span><%= noticia.data %></span>
+
+                                <span>
+                                    <%= noticia.autor %>
+                                </span>
+
+                                <span>
+                                    <%= noticia.data %>
+                                </span>
+
                             </div>
 
                         </div>

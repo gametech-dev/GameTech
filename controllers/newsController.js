@@ -63,43 +63,60 @@ exports.createNews = (req, res) => {
 
 exports.listNews = (req, res) => {
 
-    db.all(
+    const pesquisa = req.query.pesquisa || "";
 
-        "SELECT * FROM news ORDER BY id DESC",
+    let sql = "SELECT * FROM news";
+    let params = [];
 
-        [],
+    if (pesquisa.trim() !== "") {
 
-        (err, noticias) => {
+        sql += `
+            WHERE
+                titulo LIKE ?
+                OR categoria LIKE ?
+                OR autor LIKE ?
+        `;
 
-            if (err) {
+        const termo = `%${pesquisa}%`;
 
-                console.log(err);
+        params = [termo, termo, termo];
 
-                return res.send("Erro ao carregar notícias.");
+    }
 
-            }
+    sql += " ORDER BY id DESC";
 
-            noticias.forEach(noticia => {
+    db.all(sql, params, (err, noticias) => {
 
-                noticia.data = new Date(
-                    noticia.created_at
-                ).toLocaleDateString("pt-PT", {
+        if (err) {
 
-                    day: "2-digit",
-                    month: "2-digit",
-                    year: "numeric"
+            console.log(err);
 
-                });
-
-            });
-
-            res.render("noticias", {
-                noticias
-            });
+            return res.send("Erro ao carregar notícias.");
 
         }
 
-    );
+        noticias.forEach(noticia => {
+
+            noticia.data = new Date(
+                noticia.created_at
+            ).toLocaleDateString("pt-PT", {
+
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric"
+
+            });
+
+        });
+
+        res.render("noticias", {
+
+            noticias,
+            pesquisa
+
+        });
+
+    });
 
 };
 

@@ -231,3 +231,98 @@
     background:#1d4ed8;
     transform:translateY(-2px);
 }
+
+/* ==========================================================
+   PESQUISA
+========================================================== */
+
+.search-box{
+
+    margin:40px 0 50px;
+
+}
+
+.search-box form{
+
+    display:flex;
+    gap:15px;
+
+}
+
+.search-box input{
+
+    flex:1;
+
+    padding:16px 20px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#111c2d;
+
+    color:#fff;
+
+    font-size:16px;
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+.search-box input:focus{
+
+    box-shadow:0 0 0 3px rgba(37,99,235,.35);
+
+}
+
+.search-box input::placeholder{
+
+    color:#94a3b8;
+
+}
+
+.search-box button{
+
+    padding:16px 28px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#2563eb;
+
+    color:#fff;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.search-box button:hover{
+
+    background:#1d4ed8;
+
+}
+
+@media(max-width:768px){
+
+    .search-box form{
+
+        flex-direction:column;
+
+    }
+
+    .search-box button{
+
+        width:100%;
+
+    }
+
+}
