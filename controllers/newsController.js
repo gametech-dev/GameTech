@@ -10,18 +10,25 @@ exports.showNewForm = (req, res) => {
 
 };
 
+
 // =======================
 // Criar Notícia
 // =======================
 
 exports.createNews = (req, res) => {
 
-    const { titulo, categoria, imagem, conteudo } = req.body;
+    const {
+        titulo,
+        categoria,
+        imagem,
+        conteudo
+    } = req.body;
 
     if (!req.session.user) {
-    return res.redirect("/login");
 
-}
+        return res.redirect("/login");
+
+    }
 
     const autor = req.session.user.nome;
 
@@ -57,6 +64,7 @@ exports.createNews = (req, res) => {
 
 };
 
+
 // =======================
 // Listar Notícias (Público)
 // =======================
@@ -65,12 +73,32 @@ exports.listNews = (req, res) => {
 
     const pesquisa = req.query.pesquisa || "";
 
-    let sql = "SELECT * FROM news";
+    // Número da página atual
+    let pagina = parseInt(req.query.pagina) || 1;
+
+    if (pagina < 1) {
+
+        pagina = 1;
+
+    }
+
+    // Notícias por página
+    const porPagina = 6;
+
+    // Calcula o OFFSET
+    const offset = (pagina - 1) * porPagina;
+
+
+    // =======================
+    // Pesquisa
+    // =======================
+
+    let where = "";
     let params = [];
 
     if (pesquisa.trim() !== "") {
 
-        sql += `
+        where = `
             WHERE
                 titulo LIKE ?
                 OR categoria LIKE ?
@@ -79,46 +107,149 @@ exports.listNews = (req, res) => {
 
         const termo = `%${pesquisa}%`;
 
-        params = [termo, termo, termo];
+        params = [
+            termo,
+            termo,
+            termo
+        ];
 
     }
 
-    sql += " ORDER BY id DESC";
 
-    db.all(sql, params, (err, noticias) => {
+    // =======================
+    // Contar notícias
+    // =======================
 
-        if (err) {
+    const countSql = `
+        SELECT COUNT(*) AS total
+        FROM news
+        ${where}
+    `;
 
-            console.log(err);
+    db.get(
+        countSql,
+        params,
+        (err, resultado) => {
 
-            return res.send("Erro ao carregar notícias.");
+            if (err) {
+
+                console.log(err);
+
+                return res.send(
+                    "Erro ao contar notícias."
+                );
+
+            }
+
+            const totalNoticias = resultado.total;
+
+            const totalPaginas = Math.ceil(
+                totalNoticias / porPagina
+            );
+
+
+            // =======================
+            // Garantir página válida
+            // =======================
+
+            if (
+                totalPaginas > 0 &&
+                pagina > totalPaginas
+            ) {
+
+                pagina = totalPaginas;
+
+            }
+
+
+            const novoOffset =
+                (pagina - 1) * porPagina;
+
+
+            // =======================
+            // Buscar notícias
+            // =======================
+
+            const sql = `
+                SELECT *
+                FROM news
+                ${where}
+                ORDER BY id DESC
+                LIMIT ? OFFSET ?
+            `;
+
+            const queryParams = [
+                ...params,
+                porPagina,
+                novoOffset
+            ];
+
+
+            db.all(
+                sql,
+                queryParams,
+                (err, noticias) => {
+
+                    if (err) {
+
+                        console.log(err);
+
+                        return res.send(
+                            "Erro ao carregar notícias."
+                        );
+
+                    }
+
+
+                    // =======================
+                    // Formatar datas
+                    // =======================
+
+                    noticias.forEach(noticia => {
+
+                        noticia.data =
+                            new Date(
+                                noticia.created_at
+                            ).toLocaleDateString(
+                                "pt-PT",
+                                {
+                                    day: "2-digit",
+                                    month: "2-digit",
+                                    year: "numeric"
+                                }
+                            );
+
+                    });
+
+
+                    // =======================
+                    // Renderizar
+                    // =======================
+
+                    res.render("noticias", {
+
+                        noticias,
+
+                        pesquisa,
+
+                        pagina,
+
+                        totalPaginas,
+
+                        totalNoticias
+
+                    });
+
+                }
+
+            );
 
         }
 
-        noticias.forEach(noticia => {
-
-            noticia.data = new Date(
-                noticia.created_at
-            ).toLocaleDateString("pt-PT", {
-
-                day: "2-digit",
-                month: "2-digit",
-                year: "numeric"
-
-            });
-
-        });
-
-        res.render("noticias", {
-
-            noticias,
-            pesquisa
-
-        });
-
-    });
+    );
 
 };
+
 
 // =======================
 // Mostrar Notícia
@@ -140,25 +271,31 @@ exports.showNews = (req, res) => {
 
                 console.log(err);
 
-                return res.send("Erro ao carregar notícia.");
+                return res.send(
+                    "Erro ao carregar notícia."
+                );
 
             }
 
             if (!noticia) {
 
-                return res.send("Notícia não encontrada.");
+                return res.send(
+                    "Notícia não encontrada."
+                );
 
             }
 
-            noticia.data = new Date(
-                noticia.created_at
-            ).toLocaleDateString("pt-PT", {
-
-                day: "2-digit",
-                month: "2-digit",
-                year: "numeric"
-
-            });
+            noticia.data =
+                new Date(
+                    noticia.created_at
+                ).toLocaleDateString(
+                    "pt-PT",
+                    {
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "numeric"
+                    }
+                );
 
             res.render("noticia", {
                 noticia
@@ -169,6 +306,7 @@ exports.showNews = (req, res) => {
     );
 
 };
+
 
 // =======================
 // Painel Admin
@@ -188,27 +326,34 @@ exports.adminNews = (req, res) => {
 
                 console.log(err);
 
-                return res.send("Erro ao carregar notícias.");
+                return res.send(
+                    "Erro ao carregar notícias."
+                );
 
             }
 
             noticias.forEach(noticia => {
 
-                noticia.data = new Date(
-                    noticia.created_at
-                ).toLocaleDateString("pt-PT", {
-
-                    day: "2-digit",
-                    month: "2-digit",
-                    year: "numeric"
-
-                });
+                noticia.data =
+                    new Date(
+                        noticia.created_at
+                    ).toLocaleDateString(
+                        "pt-PT",
+                        {
+                            day: "2-digit",
+                            month: "2-digit",
+                            year: "numeric"
+                        }
+                    );
 
             });
 
             res.render("admin-noticias", {
+
                 noticias,
+
                 user: req.session.user
+
             });
 
         }
@@ -216,6 +361,7 @@ exports.adminNews = (req, res) => {
     );
 
 };
+
 
 // =======================
 // Formulário Editar
@@ -237,26 +383,34 @@ exports.showEditForm = (req, res) => {
 
                 console.log(err);
 
-                return res.send("Erro ao carregar notícia.");
+                return res.send(
+                    "Erro ao carregar notícia."
+                );
 
             }
 
             if (!noticia) {
 
-                return res.redirect("/admin/noticias");
+                return res.redirect(
+                    "/admin/noticias"
+                );
 
             }
 
-            res.render("editar-noticia", {
-                noticia,
-                user: req.session.user
-            });
+            res.render(
+                "editar-noticia",
+                {
+                    noticia,
+                    user: req.session.user
+                }
+            );
 
         }
 
     );
 
 };
+
 
 // =======================
 // Atualizar Notícia
@@ -297,17 +451,22 @@ exports.updateNews = (req, res) => {
 
                 console.log(err);
 
-                return res.send("Erro ao atualizar notícia.");
+                return res.send(
+                    "Erro ao atualizar notícia."
+                );
 
             }
 
-            res.redirect("/admin/noticias");
+            res.redirect(
+                "/admin/noticias"
+            );
 
         }
 
     );
 
 };
+
 
 // =======================
 // Apagar Notícia
@@ -323,17 +482,21 @@ exports.deleteNews = (req, res) => {
 
         [id],
 
-        function(err){
+        function (err) {
 
-            if(err){
+            if (err) {
 
                 console.log(err);
 
-                return res.send("Erro ao apagar notícia.");
+                return res.send(
+                    "Erro ao apagar notícia."
+                );
 
             }
 
-            res.redirect("/admin/noticias");
+            res.redirect(
+                "/admin/noticias"
+            );
 
         }
 

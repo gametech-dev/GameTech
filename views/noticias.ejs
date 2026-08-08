@@ -24,7 +24,8 @@
                     type="text"
                     name="pesquisa"
                     placeholder="🔎 Procurar notícias..."
-                    value="<%= typeof pesquisa !== 'undefined' ? pesquisa : '' %>">
+                    value="<%= typeof pesquisa !== 'undefined' ? pesquisa : '' %>"
+                >
 
                 <button type="submit">
                     Pesquisar
@@ -33,6 +34,9 @@
             </form>
 
         </div>
+
+
+        <!-- Notícias -->
 
         <div class="news-grid">
 
@@ -44,13 +48,17 @@
 
                 <% noticias.forEach(noticia => { %>
 
-                    <a href="/noticias/<%= noticia.id %>" class="news-card">
+                    <a
+                        href="/noticias/<%= noticia.id %>"
+                        class="news-card"
+                    >
 
                         <div class="news-image">
 
                             <img
                                 src="<%= noticia.imagem %>"
-                                alt="<%= noticia.titulo %>">
+                                alt="<%= noticia.titulo %>"
+                            >
 
                         </div>
 
@@ -89,6 +97,62 @@
             <% } %>
 
         </div>
+
+
+        <!-- Paginação -->
+
+        <% if (totalPaginas > 1) { %>
+
+            <div class="pagination">
+
+                <!-- Página anterior -->
+
+                <% if (pagina > 1) { %>
+
+                    <a
+                        href="/noticias?pesquisa=<%= encodeURIComponent(pesquisa) %>&pagina=<%= pagina - 1 %>"
+                        class="pagination-button"
+                    >
+                        ← Anterior
+                    </a>
+
+                <% } %>
+
+
+                <!-- Números -->
+
+                <div class="pagination-numbers">
+
+                    <% for (let i = 1; i <= totalPaginas; i++) { %>
+
+                        <a
+                            href="/noticias?pesquisa=<%= encodeURIComponent(pesquisa) %>&pagina=<%= i %>"
+                            class="pagination-number <%= i === pagina ? 'active' : '' %>"
+                        >
+                            <%= i %>
+                        </a>
+
+                    <% } %>
+
+                </div>
+
+
+                <!-- Página seguinte -->
+
+                <% if (pagina < totalPaginas) { %>
+
+                    <a
+                        href="/noticias?pesquisa=<%= encodeURIComponent(pesquisa) %>&pagina=<%= pagina + 1 %>"
+                        class="pagination-button"
+                    >
+                        Próxima →
+                    </a>
+
+                <% } %>
+
+            </div>
+
+        <% } %>
 
     </div>
 

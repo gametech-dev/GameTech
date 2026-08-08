@@ -326,3 +326,111 @@
     }
 
 }
+
+/* ==========================================================
+   PAGINAÇÃO
+========================================================== */
+
+.pagination{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-top:60px;
+
+    flex-wrap:wrap;
+
+}
+
+.pagination-numbers{
+
+    display:flex;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+}
+
+.pagination-button,
+.pagination-number{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    min-width:42px;
+
+    height:42px;
+
+    padding:0 14px;
+
+    border-radius:10px;
+
+    background:#111c2d;
+
+    color:#ffffff;
+
+    text-decoration:none;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    transition:.3s;
+
+}
+
+.pagination-number{
+
+    padding:0;
+
+}
+
+.pagination-button:hover,
+.pagination-number:hover{
+
+    background:#2563eb;
+
+    border-color:#60a5fa;
+
+}
+
+.pagination-number.active{
+
+    background:#2563eb;
+
+    border-color:#60a5fa;
+
+    font-weight:700;
+
+}
+
+@media(max-width:600px){
+
+    .pagination{
+
+        gap:10px;
+
+    }
+
+    .pagination-button{
+
+        width:100%;
+
+    }
+
+    .pagination-numbers{
+
+        width:100%;
+
+    }
+
+}
